@@ -7,10 +7,10 @@ const app = express(),
 var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-var serviceAccount = require('./petra-fb42d-firebase-adminsdk-1l4nv-fe7bcc6715.json');
+var serviceAccount = require('./petra-corp-firebase-adminsdk-l0mlh-00fbe365d1.json');
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://petra-fb42d.firebaseio.com'
+    databaseURL: "https://petra-corp.firebaseio.com"
 });
 
 app.get('/',(req,res)=>{
