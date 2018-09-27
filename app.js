@@ -7,7 +7,7 @@ const app = express(),
 var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-var serviceAccount = require('./petra-fb42d-firebase-adminsdk-1l4nv-f5d20ad5b7.json');
+var serviceAccount = require('./petra-fb42d-firebase-adminsdk-1l4nv-fe7bcc6715.json');
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: 'https://petra-fb42d.firebaseio.com'
@@ -24,15 +24,18 @@ app.post('/deleteUser',jsonParser,(req,res) => {
     }
     else {
         var uid = req.body.uid;
-        admin.auth().deleteUser(uid).then((userRecord) => {
+        console.log(uid);
+        admin.auth().deleteUser(uid)
+            .then(function() {
+                return res.status(200).send({"status" : "Success"});
 
-            return res.status(200).send({"status" : "User Deleted"})
-        }).catch((error) => {
+            })
+            .catch(function(error) {
+                return res.status(200).send({"status" : "error"});
 
-            return res.status(200).send({"status" : "User Not Deleted"});
-        })
+            });
     }
+
 })
 
 app.listen(port);
-console.log('todo list RESTful API server started on: ' + port);
