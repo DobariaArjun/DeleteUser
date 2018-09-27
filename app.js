@@ -18,15 +18,20 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/deleteUser',jsonParser,(req,res) => {
-    if (!req.body.uid) return res.status(400).send({"status" : "Bad Request"});
+    if (!req.body.uid)
+    {
+        return res.status(400).send({"status" : "Bad Request"});
+    }
+    else {
+        var uid = req.body.uid;
+        admin.auth().deleteUser(uid).then((userRecord) => {
 
-    var uid = req.body.uid;
+            return res.status(200).send({"status" : "User Deleted"})
+        }).catch((error) => {
 
-    admin.auth().deleteUser(uid).then((userRecord) => {
-        return res.status(200).send({"status" : "User Deleted"})
-    }).catch((error) => {
-        return res.status(200).send({"status" : error.description});
-    })
+            return res.status(200).send({"status" : "User Not Deleted"});
+        })
+    }
 })
 
 app.listen(port);
