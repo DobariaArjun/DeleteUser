@@ -17,6 +17,10 @@ app.get('/',(req,res)=>{
     res.send("Server Running... :) ");
 })
 
+app.post('/stop',(req,res) => {
+    return res.status(200).send({"status" : "false"});
+})
+
 app.post('/deleteUser',jsonParser,(req,res) => {
     if (!req.body.uid)
     {
