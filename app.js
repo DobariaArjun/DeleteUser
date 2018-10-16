@@ -17,7 +17,7 @@ app.get('/',(req,res)=>{
     res.send("Server Running... :) ");
 })
 
-app.post('/stop',(req,res) => {
+app.get('/stop',(req,res) => {
     return res.status(200).send({"status" : "false"});
 })
 
