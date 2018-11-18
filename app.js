@@ -18,7 +18,7 @@ app.get('/',(req,res)=>{
 })
 
 app.get('/stop',(req,res) => {
-    return res.status(200).send({"status" : "false"});
+    return res.status(200).send({"status" : "true"});
 })
 
 app.post('/deleteUser',jsonParser,(req,res) => {
