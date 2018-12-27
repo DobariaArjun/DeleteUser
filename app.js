@@ -42,4 +42,8 @@ app.post('/deleteUser',jsonParser,(req,res) => {
 
 })
 
+app.get('/pp', function(req, res) {
+    res.sendFile('PrivacyPolicy.html', {root: __dirname })
+});
+
 app.listen(port);
